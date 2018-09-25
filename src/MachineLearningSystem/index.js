@@ -8,33 +8,24 @@ class MachineLearningSystem extends Component {
     constructor(props) {
         super(props);
 
-        this.drawCB = this.drawCB.bind(this);
+        this.imageObj     = new Image();
+        this.imageObj.src = './images/i1-cat.png';
+
+        //this.drawCB = this.drawCB.bind(this);
+
         this.getImageData = this.getImageData.bind(this);
         this.handleClick = this.handleClick.bind(this);
-
 
     }
 
     componentDidMount() {
         this.canvas = this.refs.domCanvas1;
-
-        // const img    = this.refs.domImage1;
-
         this.ctx = this.canvas.getContext("2d");
-
-        // ctx.fillStyle = "red";
-        // ctx.fillRect(0, 0, 200, 180);
-        // ctx.drawImage(catInput, 0, 0);
-
-        this.imageObj = new Image();
-        this.imageObj.src = './images/i1-cat.png'
-        // this.imageObj.onload = this.drawCB;
-
     }
 
-    drawCB() {
-        this.ctx.drawImage( this.imageObj,0,0 );
-    }
+    // drawCB() {
+    //     this.ctx.drawImage( this.imageObj,0,0 );
+    // }
 
     getImageData ( imgObject ) {
         this.ctx.drawImage( this.imageObj,0,0 );
@@ -97,7 +88,7 @@ class MachineLearningSystem extends Component {
                     <NavLink to='/'>My Content</NavLink>
 
                 </div>
-                <div class="canvas-wrap">
+                <div className="canvas-wrap">
                     <canvas
                         ref='domCanvas1'
                         width={200}
