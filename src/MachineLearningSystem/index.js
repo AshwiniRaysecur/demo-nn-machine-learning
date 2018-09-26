@@ -19,7 +19,9 @@ class MachineLearningSystem extends Component {
         super(props);
 
         this.state = {
-            trial:0
+            trial:0,
+            canvas: null,
+            ctx: null
         };
 
         // this.imageObj     = new Image();
@@ -44,10 +46,6 @@ class MachineLearningSystem extends Component {
         this.imageOjbects.output.src   = image.FILTERED;
         this.imageOjbects.original.src = image.ORIGINAL;
 
-
-
-        //this.drawCB = this.drawCB.bind(this);
-
         this.getImageData = this.getImageData.bind(this);
         this.handleClick  = this.handleClick.bind(this);
         this.iteration    = this.iteration.bind(this);
@@ -55,24 +53,24 @@ class MachineLearningSystem extends Component {
     }
 
     componentDidMount() {
-        this.canvas = this.refs.domCanvas1;
-        this.ctx = this.canvas.getContext("2d");
 
+        const canvas = this.refs.domCanvas1;
+        const ctx    = canvas.getContext("2d");
 
-        this.colorData    = this.getImageData( this.imageOjbects.input );
-        this.originalData = this.getImageData( this.imageOjbects.original );
-        this.filterData   = this.getImageData( this.imageOjbects.output );
+        this.setState( {
+            canvas,
+            ctx
+        } );
 
     }
 
-    // drawCB() {
-    //     this.ctx.drawImage( this.imageObj,0,0 );
-    // }
-
     getImageData ( imgObject ) {
 
-        this.ctx.drawImage( imgObject, 0, 0 );
-        return( this.ctx.getImageData(0, 0, 125, 125) );
+        this.state.ctx.drawImage( imgObject, 0, 0 );
+
+        const result = this.state.ctx.getImageData(0, 0, 125, 125);
+
+        return( result.data );
 
     }
 
@@ -85,11 +83,13 @@ class MachineLearningSystem extends Component {
         if (oy && (y + oy) > 0 && (y + oy) < 125)
             y += oy;
 
-        const red = data[((125 * y) + x) * 4];
-        const green = data[((125 * y) + x) * 4 + 1];
-        const blue = data[((125 * y) + x) * 4 + 2];
+        const red   = data[ ((125 * y) + x) * 4];
+        const green = data[ ((125 * y) + x) * 4 + 1];
+        const blue  = data[ ((125 * y) + x) * 4 + 2];
 
         return [red / 255, green / 255, blue / 255];
+
+
     }
 
     iteration() {
@@ -123,9 +123,18 @@ class MachineLearningSystem extends Component {
         // $('#iterations').text(trial);
         // todo RESUME HERE
         // todo this is scaffolding. here is where you actually show each iteration!!
-        // this.ctx.drawImage( this.imageOjbects.original  , 0, 0 );
+        // this.state.ctx.drawImage( this.imageOjbects.original  , 0, 0 );
 
-        const  imageData = this.ctx.getImageData(0, 0, 125, 125);
+        // if( this.state.trial % 2 === 0 ) {
+        //     this.state.ctx.drawImage( this.imageOjbects.original  , 0, 0 );
+        // } else {
+        //     this.state.ctx.drawImage( this.imageOjbects.output  , 0, 0 );
+        // }
+
+
+        const  imageData = this.state.ctx.getImageData(0, 0, 125, 125);
+
+
 
         for ( this.index = 0; this.index < this.size; this.index++) {
             let px = this.pixel( this.originalData, 0, 0 );
@@ -144,21 +153,38 @@ class MachineLearningSystem extends Component {
         }
 
 
-        this.ctx.putImageData(imageData,0,0);
+
+        this.state.ctx.putImageData(imageData,0,0);
+
 
         // if ($location.$$path == '/image-filters')
+
         if( this.state.trial < ITERATIONS )
             setTimeout( this.iteration, 100 );
+
 
     }
 
 
 
     handleClick(evt) {
-        let t = 0;
+
+        this.colorData    = this.getImageData( this.imageOjbects.input );
+        this.originalData = this.getImageData( this.imageOjbects.original );
+        this.filterData   = this.getImageData( this.imageOjbects.output );
+
+
+
+        const t = 0;
         this.setState( {trial: t} );
-        console.log( "calling iteration" );
-        this.iteration();
+
+        this.state.ctx.drawImage( this.imageOjbects.original, 0, 0 );
+
+
+        setTimeout( this.iteration, 100 );
+
+        //setTimeout( this.preview(), 100 );
+
     }
 
     render() {
