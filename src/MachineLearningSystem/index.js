@@ -2,11 +2,6 @@ import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
 import {Architect} from 'synaptic';
 
-// const image = {
-//     ORIGINAL: './images/cat_original.png',
-//     INPUT:    './images/i1-cat.png',
-//     FILTERED: './images/o1-cat-texture.png'
-// };
 
 const image = {
     ORIGINAL: './images/nn-gen-in.png',
@@ -147,12 +142,6 @@ class MachineLearningSystem extends Component {
 
         return(
             <div className='canvas-wrapper'>
-                <div>
-
-                    <NavLink to='/canvas'>My Canvas</NavLink>
-                    <NavLink to='/'>My Content</NavLink>
-
-                </div>
                 <div className="canvas-wrap">
                     <canvas
                         ref='domCanvas1'
@@ -160,24 +149,19 @@ class MachineLearningSystem extends Component {
                         height={200}
                     />
                 </div>
-
                 <div className="image-wrap">
                     <img
                         src={image.FILTERED}
                     />
                 </div>
-
                 <div className="image-wrap">
                     <img
                         src={image.INPUT}
                     />
                 </div>
-
-
                 <div className="trials-wrap">
                     {this.state.trial}
                 </div>
-
 
 
                 <button
