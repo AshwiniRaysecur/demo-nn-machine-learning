@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
 // -------   custom ------------
 import MachineLearningSystem from "./MachineLearningSystem";
-import MyContent from "./MyContent";
+import About from "./about";
 import Navigation from "./nav";
 
 class App extends Component {
@@ -12,7 +12,7 @@ class App extends Component {
             <div className='app-wrapper'>
                 <Navigation/>
                 <main>
-                    <Route exact path="/"     component={MyContent} />
+                    <Route exact path="/"     component={About} />
                     <Route exact path="/demo" component={MachineLearningSystem} />
                 </main>
             </div>
