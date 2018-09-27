@@ -11,3 +11,11 @@
 .image-wrap {
     text-align: center;
 }
+
+@media screen and (max-width: 780px) {
+    .content-wrapper .image-wrap #perception-architecture {
+        width: 80%;
+    }
+}
+
+

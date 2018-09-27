@@ -8,7 +8,7 @@ class About extends Component {
             <div className='content-wrapper'>
                 <div className='heading'>Perceptron Demo</div>
                 <div className='image-wrap'>
-                    <img
+                    <img id='perceptron-architecture'
                       src='./images/perceptron-architecture.jpg'
                     />
                 </div>
