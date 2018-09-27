@@ -142,7 +142,6 @@ class MachineLearningSystem extends Component {
     render() {
 
         return(
-
             <div className='mls-wrap'>
 
                 <div className='control-panel'>
@@ -195,12 +194,7 @@ class MachineLearningSystem extends Component {
                             <div>Target Output (increased contrast)</div>
                         </div>
                     </div>
-
-
-
                 </div>
-
-
             </div>
         );
     }
