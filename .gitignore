@@ -1,7 +1,10 @@
 .DS_Store
 .idea/
 
+
+
 nn-image-proj-log.txt
 
 node_modules/
+build/
 
