@@ -10,6 +10,7 @@ class App extends Component {
     render() {
         return(
             <div className='app-wrapper'>
+                <header>Synaptic Perceptron Demo in React</header>
                 <Navigation/>
                 <main>
                     <Route exact path="/"     component={About} />

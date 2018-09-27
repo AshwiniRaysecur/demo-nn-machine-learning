@@ -1,0 +1,57 @@
+canvas {
+    border: solid 4px green;
+}
+
+.mls-wrap {
+
+}
+
+.table {
+    display: table;
+    margin: auto;
+    margin-top: 1em;
+    width: 80%;
+    table-layout: fixed;
+
+}
+
+.table-row {
+     display: table-row;
+ }
+
+
+.table-cell {
+    display: table-cell;
+
+}
+
+.table-cell div {
+    padding: 1em;
+}
+
+.table-cell img {
+    border: solid 1px black;
+}
+
+
+.image-wrap, .canvas-wrap {
+    text-align: center;
+}
+
+hr {
+    width: 60%;
+}
+
+.control-panel {
+    margin-top:   -1em;
+    margin-left:  -1em;
+    margin-right: -1em;
+
+    padding: 1em;
+    background-color: #eee;
+    text-align: center;
+}
+
+.control-panel div {
+    display: inline-block;
+}

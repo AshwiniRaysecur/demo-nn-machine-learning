@@ -1,0 +1,13 @@
+.heading {
+    font-size: larger;
+    font-weight: 500;
+}
+
+.para {
+    margin-bottom: 1em;
+    text-align: justify;
+}
+
+.image-wrap {
+    text-align: center;
+}

@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
 import {Architect} from 'synaptic';
 
+import './MLS.css';
+
 
 const image = {
     ORIGINAL: './images/nn-gen-in.png',
@@ -141,38 +143,8 @@ class MachineLearningSystem extends Component {
     render() {
 
         return(
-            <div className='canvas-wrapper table'>
-                <div className='table-row'>
-                    <div className="image-wrap">
-                        <img
-                            src={image.ORIGINAL}
-                        />
-                        <div>New Input</div>
-                    </div>
-                    <div className="canvas-wrap">
-                        <canvas
-                            ref='domCanvas1'
-                            width={200}
-                            height={200}
-                        />
-                        <div>Learned Output (result of training)</div>
-                    </div>
-                </div>
 
-                <div className='table-row'>
-                    <div className="image-wrap">
-                        <img
-                            src={image.INPUT}
-                        />
-                        <div>Training Input</div>
-                    </div>
-                    <div className="image-wrap">
-                        <img
-                            src={image.FILTERED}
-                        />
-                        <div>Target Output (increased contrast)</div>
-                    </div>
-                </div>
+            <div className='mls-wrap'>
 
                 <div className='control-panel'>
                     <button
@@ -185,6 +157,50 @@ class MachineLearningSystem extends Component {
                         <span>{this.state.trial}</span>
                     </div>
                 </div>
+
+                <div className='canvas-wrapper table'>
+                    <div className='table-row'>
+                        <div className="image-wrap table-cell">
+                            <img
+                                src={image.ORIGINAL}
+                            />
+                            <div>New Input</div>
+                        </div>
+                        <div className="canvas-wrap table-cell">
+                            <canvas
+                                ref='domCanvas1'
+                                width={125}
+                                height={125}
+                            />
+                            <div>Learned Output (result of training)</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr />
+
+                <div className='training-wrapper table'>
+
+                    <div className='table-row'>
+                        <div className="image-wrap table-cell">
+                            <img
+                                src={image.INPUT}
+                            />
+                            <div>Training Input</div>
+                        </div>
+                        <div className="image-wrap table-cell">
+                            <img
+                                src={image.FILTERED}
+                            />
+                            <div>Target Output (increased contrast)</div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
 
             </div>
         );
