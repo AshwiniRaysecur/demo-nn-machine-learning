@@ -6,9 +6,9 @@ class Navigation extends React.Component {
     render() {
         return(
             <div>
-                <NavLink to='/demo'>Demo</NavLink>
-                <span className='spacer'></span>
                 <NavLink to='/'>About</NavLink>
+                <span className='spacer'></span>
+                <NavLink to='/demo'>Demo</NavLink>
             </div>
         );
     }

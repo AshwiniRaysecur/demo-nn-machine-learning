@@ -141,35 +141,50 @@ class MachineLearningSystem extends Component {
     render() {
 
         return(
-            <div className='canvas-wrapper'>
-                <div className="canvas-wrap">
-                    <canvas
-                        ref='domCanvas1'
-                        width={200}
-                        height={200}
-                    />
-                </div>
-                <div className="image-wrap">
-                    <img
-                        src={image.FILTERED}
-                    />
-                </div>
-                <div className="image-wrap">
-                    <img
-                        src={image.INPUT}
-                    />
-                </div>
-                <div className="trials-wrap">
-                    {this.state.trial}
+            <div className='canvas-wrapper table'>
+                <div className='table-row'>
+                    <div className="image-wrap">
+                        <img
+                            src={image.ORIGINAL}
+                        />
+                        <div>New Input</div>
+                    </div>
+                    <div className="canvas-wrap">
+                        <canvas
+                            ref='domCanvas1'
+                            width={200}
+                            height={200}
+                        />
+                        <div>Learned Output (result of training)</div>
+                    </div>
                 </div>
 
+                <div className='table-row'>
+                    <div className="image-wrap">
+                        <img
+                            src={image.INPUT}
+                        />
+                        <div>Training Input</div>
+                    </div>
+                    <div className="image-wrap">
+                        <img
+                            src={image.FILTERED}
+                        />
+                        <div>Target Output (increased contrast)</div>
+                    </div>
+                </div>
 
-                <button
-
-                    onClick={ this.handleClick }
-
-                >click me</button>
-
+                <div className='control-panel'>
+                    <button
+                        onClick={ this.handleClick }
+                    >Train Me</button>
+                    <span className="spacer"></span>
+                    <div className="trials-wrap">
+                        <span>Iteration: </span>
+                        <span className="line-spacer"></span>
+                        <span>{this.state.trial}</span>
+                    </div>
+                </div>
 
             </div>
         );
