@@ -13,7 +13,7 @@
 }
 
 @media screen and (max-width: 780px) {
-    .content-wrapper .image-wrap #perception-architecture {
+    .content-wrapper .image-wrap #perceptron-architecture {
         width: 80%;
     }
 }
