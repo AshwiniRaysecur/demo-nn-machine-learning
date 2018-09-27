@@ -2,10 +2,16 @@ import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
 import {Architect} from 'synaptic';
 
+// const image = {
+//     ORIGINAL: './images/cat_original.png',
+//     INPUT:    './images/i1-cat.png',
+//     FILTERED: './images/o1-cat-texture.png'
+// };
+
 const image = {
-    ORIGINAL: './images/cat_original.png',
-    INPUT:    './images/i1-cat.png',
-    FILTERED: './images/o1-cat-texture.png'
+    ORIGINAL: './images/nn-gen-in.png',
+    INPUT:    './images/nn-training-in.png',
+    FILTERED: './images/nn-training-out.png'
 };
 
 const ITERATIONS = 50;
@@ -123,7 +129,7 @@ class MachineLearningSystem extends Component {
         this.state.ctx.putImageData(imageData,0,0);
 
         if( this.state.trial < ITERATIONS )
-            setTimeout( this.iteration, 100 );
+            setTimeout( this.iteration, 500 );
     }
 
     handleClick(evt) {
@@ -157,13 +163,13 @@ class MachineLearningSystem extends Component {
 
                 <div className="image-wrap">
                     <img
-                        src="./images/i1-cat.png"
+                        src={image.FILTERED}
                     />
                 </div>
 
                 <div className="image-wrap">
                     <img
-                        src="./images/o1-cat-texture.png"
+                        src={image.INPUT}
                     />
                 </div>
 
