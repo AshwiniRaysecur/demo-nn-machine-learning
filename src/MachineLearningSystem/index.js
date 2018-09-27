@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
-
 import {Architect} from 'synaptic';
-
-
 
 const image = {
     ORIGINAL: './images/cat_original.png',
@@ -17,23 +14,18 @@ class MachineLearningSystem extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             trial:0,
             canvas: null,
             ctx: null
         };
 
-        // this.imageObj     = new Image();
-        // this.imageObj.src = './images/i1-cat.png';
-
         // create a new 3 layor perceptron with one input one hidden and one output layor
         this.perceptron = new Architect.Perceptron(27,8,3);
 
-        this.index      = 0;
-        this.size       = 125 * 125;
-
-        this.px         = null;
+        this.index  = 0;
+        this.size   = 125 * 125;
+        this.px     = null;
 
         // data
         this.imageOjbects = {
@@ -53,25 +45,18 @@ class MachineLearningSystem extends Component {
     }
 
     componentDidMount() {
-
         const canvas = this.refs.domCanvas1;
         const ctx    = canvas.getContext("2d");
-
         this.setState( {
             canvas,
             ctx
         } );
-
     }
 
     getImageData ( imgObject ) {
-
         this.state.ctx.drawImage( imgObject, 0, 0 );
-
         const result = this.state.ctx.getImageData(0, 0, 125, 125);
-
         return( result.data );
-
     }
 
     pixel (data, ox, oy) {
@@ -88,14 +73,11 @@ class MachineLearningSystem extends Component {
         const blue  = data[ ((125 * y) + x) * 4 + 2];
 
         return [red / 255, green / 255, blue / 255];
-
-
     }
 
     iteration() {
         let t = this.state.trial;
         this.setState( {trial: ++t} );
-
 
         for ( this.index = 0; this.index < this.size; this.index+=2 ) {
 
@@ -120,21 +102,7 @@ class MachineLearningSystem extends Component {
 
     preview() {
 
-        // $('#iterations').text(trial);
-        // todo RESUME HERE
-        // todo this is scaffolding. here is where you actually show each iteration!!
-        // this.state.ctx.drawImage( this.imageOjbects.original  , 0, 0 );
-
-        // if( this.state.trial % 2 === 0 ) {
-        //     this.state.ctx.drawImage( this.imageOjbects.original  , 0, 0 );
-        // } else {
-        //     this.state.ctx.drawImage( this.imageOjbects.output  , 0, 0 );
-        // }
-
-
         const  imageData = this.state.ctx.getImageData(0, 0, 125, 125);
-
-
 
         for ( this.index = 0; this.index < this.size; this.index++) {
             let px = this.pixel( this.originalData, 0, 0 );
@@ -152,39 +120,21 @@ class MachineLearningSystem extends Component {
             imageData.data[this.index * 4 + 2] = (rgb[2] ) * 255;
         }
 
-
-
         this.state.ctx.putImageData(imageData,0,0);
-
-
-        // if ($location.$$path == '/image-filters')
 
         if( this.state.trial < ITERATIONS )
             setTimeout( this.iteration, 100 );
-
-
     }
 
-
-
     handleClick(evt) {
-
         this.colorData    = this.getImageData( this.imageOjbects.input );
         this.originalData = this.getImageData( this.imageOjbects.original );
         this.filterData   = this.getImageData( this.imageOjbects.output );
-
-
-
+        // INITIALIZE CONTEXT WITH ORIGINAL INPUT FOR TRIALS
+        this.state.ctx.drawImage( this.imageOjbects.original, 0, 0 );
         const t = 0;
         this.setState( {trial: t} );
-
-        this.state.ctx.drawImage( this.imageOjbects.original, 0, 0 );
-
-
         setTimeout( this.iteration, 100 );
-
-        //setTimeout( this.preview(), 100 );
-
     }
 
     render() {
